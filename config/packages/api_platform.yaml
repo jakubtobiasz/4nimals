@@ -1,0 +1,11 @@
+api_platform:
+    title: '4nimals'
+    description: '4nimals Web API'
+    version: '0.1.0'
+    mapping:
+        paths:
+            - '%kernel.project_dir%/config/api_platform'
+    patch_formats:
+        json: ['application/merge-patch+json']
+    swagger:
+        versions: [3]

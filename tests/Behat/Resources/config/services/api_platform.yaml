@@ -1,0 +1,56 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformClient:
+        abstract: true
+        arguments:
+            - '@test.client'
+            - '@App\Tests\Behat\Helper\SharedStorage'
+            - '@App\Tests\Behat\Helper\ApiPlatform\RequestFactory'
+            - '%api_authorization_header%'
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformClientInterface $frontApiPlatformClient:
+        parent: 'App\Tests\Behat\Helper\ApiPlatform\ApiPlatformClient'
+        arguments:
+            - 'front'
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformClientInterface $adminApiPlatformClient:
+        parent: 'App\Tests\Behat\Helper\ApiPlatform\ApiPlatformClient'
+        arguments:
+            - 'admin'
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformSecurityClient:
+        abstract: true
+        arguments:
+            - '@test.client'
+            - '@App\Tests\Behat\Helper\SharedStorage'
+            - '%api_prefix%'
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformSecurityClientInterface $frontApiPlatformSecurityClient:
+        parent: 'App\Tests\Behat\Helper\ApiPlatform\ApiPlatformSecurityClient'
+        arguments:
+            - 'front'
+
+    App\Tests\Behat\Helper\ApiPlatform\ApiPlatformSecurityClientInterface $adminApiPlatformSecurityClient:
+        parent: 'App\Tests\Behat\Helper\ApiPlatform\ApiPlatformSecurityClient'
+        arguments:
+            - 'admin'
+
+    App\Tests\Behat\Helper\ApiPlatform\ContentTypeGuide: ~
+
+    App\Tests\Behat\Helper\ApiPlatform\ContentTypeGuideInterface: '@App\Tests\Behat\Helper\ApiPlatform\ContentTypeGuide'
+
+    App\Tests\Behat\Helper\ApiPlatform\RequestFactory:
+        arguments:
+            - '@App\Tests\Behat\Helper\ApiPlatform\ContentTypeGuide'
+            - '%api_prefix%'
+
+    App\Tests\Behat\Helper\ApiPlatform\RequestFactoryInterface: '@App\Tests\Behat\Helper\ApiPlatform\RequestFactory'
+
+    App\Tests\Behat\Helper\ApiPlatform\ResponseChecker:
+        arguments:
+            - '@test.client'
+
+    App\Tests\Behat\Helper\ApiPlatform\ResponseCheckerInterface: '@App\Tests\Behat\Helper\ApiPlatform\ResponseChecker'

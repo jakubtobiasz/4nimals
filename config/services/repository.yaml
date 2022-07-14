@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    app.repository.admin_user:
+        class: App\Infrastructure\Repository\EntityRepository
+        factory: [ '@doctrine.orm.entity_manager', 'getRepository' ]
+        arguments:
+            - 'App\Entity\AdminUser'

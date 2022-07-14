@@ -1,0 +1,11 @@
+imports:
+    - { resource: "./services/*.yaml" }
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\Tests\Behat\Helper\SharedStorage: ~
+
+    App\Tests\Behat\Helper\SharedStorageInterface: '@App\Tests\Behat\Helper\SharedStorage'

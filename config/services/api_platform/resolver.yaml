@@ -1,0 +1,19 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    api_platform.route_name_resolver:
+        class: App\Infrastructure\ApiPlatform\Bridge\Symfony\Routing\RouteNameResolver
+        arguments:
+            - '@api_platform.router'
+            - '@App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider\PathPrefixProvider'
+
+    api_platform.route_name_resolver.cached:
+        class: App\Infrastructure\ApiPlatform\Bridge\Symfony\Routing\CachedRouteNameResolver
+        decorates: api_platform.route_name_resolver
+        decoration_priority: -10
+        arguments:
+            - '@api_platform.cache.route_name_resolver'
+            - '@api_platform.route_name_resolver.cached.inner'
+            - '@App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider\PathPrefixProvider'
