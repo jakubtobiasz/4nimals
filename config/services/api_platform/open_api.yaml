@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Infrastructure\ApiPlatform\OpenApi\AdminAuthenticationTokenDocumentation:
+        decorates: api_platform.openapi.factory
+        arguments:
+            - '@App\Infrastructure\ApiPlatform\OpenApi\AdminAuthenticationTokenDocumentation.inner'
+
+    App\Infrastructure\ApiPlatform\OpenApi\FrontAuthenticationTokenDocumentation:
+        decorates: api_platform.openapi.factory
+        arguments:
+            - '@App\Infrastructure\ApiPlatform\OpenApi\FrontAuthenticationTokenDocumentation.inner'

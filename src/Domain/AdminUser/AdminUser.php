@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace App\Domain\AdminUser;
 
 use App\SharedKernel\Domain\Identifier\Uuid;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class AdminUser implements AdminUserInterface
 {
@@ -14,7 +12,7 @@ class AdminUser implements AdminUserInterface
 
     private Uuid $uuid;
 
-    private Collection $roles;
+    private array $roles = [];
 
     private ?string $password = null;
 
@@ -23,7 +21,6 @@ class AdminUser implements AdminUserInterface
     public function __construct(private string $email)
     {
         $this->uuid = Uuid::create();
-        $this->roles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -46,30 +43,26 @@ class AdminUser implements AdminUserInterface
         $this->email = $email;
     }
 
-    public function getRoles(): Collection
+    public function getRoles(): array
     {
-        if (!$this->roles->contains('ROLE_USER')) {
-            $this->roles->add('ROLE_USER');
-        }
+        $roles = $this->roles;
+        $roles[] = 'ROLE_ADMIN';
+        $roles[] = 'ROLE_USER';
 
-        if (!$this->roles->contains('ROLE_ADMIN')) {
-            $this->roles->add('ROLE_ADMIN');
-        }
-
-        return $this->roles;
+        return array_unique($roles);
     }
 
     public function addRole(string $role): void
     {
-        if (!$this->roles->contains($role)) {
-            $this->roles->add($role);
+        if (!in_array($role, $this->roles)) {
+            $this->roles[] = $role;
         }
     }
 
     public function removeRole(string $role): void
     {
-        if ($this->roles->contains($role)) {
-            $this->roles->removeElement($role);
+        if (in_array($role, $this->roles)) {
+            unset($this->roles[array_search($role, $this->roles)]);
         }
     }
 

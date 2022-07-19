@@ -1,0 +1,8 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Infrastructure\Security\Provider\AdminUserProvider:
+        arguments:
+            - '@app.repository.admin_user'

@@ -22,6 +22,7 @@
         "symfony/expression-language": "5.4.*",
         "symfony/flex": "^1.17|^2",
         "symfony/framework-bundle": "5.4.*",
+        "symfony/monolog-bundle": "^3.0",
         "symfony/property-access": "5.4.*",
         "symfony/property-info": "5.4.*",
         "symfony/proxy-manager-bridge": "5.4.*",
@@ -30,7 +31,9 @@
         "symfony/serializer": "5.4.*",
         "symfony/twig-bundle": "5.4.*",
         "symfony/validator": "5.4.*",
-        "symfony/yaml": "5.4.*"
+        "symfony/yaml": "5.4.*",
+        "twig/extra-bundle": "^2.12|^3.0",
+        "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
         "behat/behat": "^3.11",
@@ -43,6 +46,9 @@
         "friends-of-behat/variadic-extension": "^1.5",
         "phpat/phpat": "^0.9.1",
         "phpspec/phpspec": "^7.2",
+        "symfony/debug-bundle": "5.4.*",
+        "symfony/stopwatch": "5.4.*",
+        "symfony/web-profiler-bundle": "5.4.*",
         "vimeo/psalm": "^4.24"
     },
     "config": {

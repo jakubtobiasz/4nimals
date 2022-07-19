@@ -6,8 +6,9 @@ namespace App\Domain\AdminUser;
 
 
 use App\SharedKernel\Domain\ResourceInterface;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-interface AdminUserInterface extends ResourceInterface, UserInterface
+interface AdminUserInterface extends ResourceInterface, PasswordAuthenticatedUserInterface, UserInterface
 {
 }
