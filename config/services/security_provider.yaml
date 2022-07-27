@@ -5,4 +5,4 @@ services:
 
     App\Infrastructure\Security\Provider\AdminUserProvider:
         arguments:
-            - '@app.repository.admin_user'
+            - '@App\Infrastructure\Doctrine\Repository\AdminUserRepository'

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace spec\App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider;
 
-use App\Domain\AdminUser\AdminUserInterface;
+use App\Domain\AdminUser\AdminUser;
 use App\Domain\User\UserInterface;
 use App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider\PathPrefixProviderInterface;
 use App\Infrastructure\Context\UserContextInterface;
@@ -60,7 +60,7 @@ class PathPrefixProviderSpec extends ObjectBehavior
 
     function it_returns_admin_as_current_prefix_when_user_is_admin_user(
         UserContextInterface $userContext,
-        AdminUserInterface $user
+        AdminUser $user
     ) {
         $userContext->getUser()->willReturn($user);
 

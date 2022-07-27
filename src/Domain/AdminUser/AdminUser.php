@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace App\Domain\AdminUser;
 
 use App\SharedKernel\Domain\Identifier\Uuid;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
-class AdminUser implements AdminUserInterface
+class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
 {
-    private ?int $id = null;
-
-    private Uuid $uuid;
+    private Uuid $id;
 
     private array $roles = [];
 
@@ -20,17 +20,11 @@ class AdminUser implements AdminUserInterface
 
     public function __construct(private string $email)
     {
-        $this->uuid = Uuid::create();
     }
 
-    public function getId(): ?int
+    public function getId(): Uuid
     {
         return $this->id;
-    }
-
-    public function getUuid(): Uuid
-    {
-        return $this->uuid;
     }
 
     public function getEmail(): string

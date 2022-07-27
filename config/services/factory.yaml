@@ -1,0 +1,6 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Domain\Shelter\Factory\ShelterFactory: ~

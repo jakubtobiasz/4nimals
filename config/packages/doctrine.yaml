@@ -11,9 +11,15 @@ doctrine:
             App:
                 is_bundle: false
                 type: xml
-                dir: '%kernel.project_dir%/config/doctrine'
+                dir: '%kernel.project_dir%/src/Infrastructure/Doctrine/ORM/Mapping'
                 prefix: 'App\Domain'
                 alias: App
+            SharedKernel:
+                is_bundle: false
+                type: xml
+                dir: '%kernel.project_dir%/src/SharedKernel/Infrastructure/Doctrine/ORM/Mapping'
+                prefix: 'App\SharedKernel\Domain'
+                alias: SharedKernel
 
 when@test:
     doctrine:

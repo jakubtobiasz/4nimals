@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<serializer xmlns="http://symfony.com/schema/dic/serializer-mapping"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://symfony.com/schema/dic/serializer-mapping
+        https://symfony.com/schema/dic/serializer-mapping/serializer-mapping-1.0.xsd"
+>
+    <class name="App\SharedKernel\Domain\Address">
+        <attribute name="street">
+            <group>admin:address:create</group>
+        </attribute>
+
+        <attribute name="buildingNumber">
+            <group>admin:address:create</group>
+        </attribute>
+
+        <attribute name="city">
+            <group>admin:address:create</group>
+        </attribute>
+
+        <attribute name="zipCode">
+            <group>admin:address:create</group>
+        </attribute>
+    </class>
+</serializer>

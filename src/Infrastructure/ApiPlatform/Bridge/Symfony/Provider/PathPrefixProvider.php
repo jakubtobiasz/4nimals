@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider;
 
-use App\Domain\AdminUser\AdminUserInterface;
+use App\Domain\AdminUser\AdminUser;
 use App\Infrastructure\Context\UserContextInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -44,7 +44,7 @@ final class PathPrefixProvider implements PathPrefixProviderInterface
             return PathPrefixes::FRONT->value;
         }
 
-        if ($user instanceof AdminUserInterface) {
+        if ($user instanceof AdminUser) {
             return PathPrefixes::ADMIN->value;
         }
 

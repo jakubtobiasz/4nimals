@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace spec\App\Infrastructure\Security\Provider;
 
-use App\Domain\AdminUser\AdminUserInterface;
+use App\Domain\AdminUser\AdminUser;
 use App\SharedKernel\Domain\EntityRepositoryInterface;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
@@ -24,14 +24,14 @@ class AdminUserProviderSpec extends ObjectBehavior
 
     function it_supports_admin_user_entity()
     {
-        $this->supportsClass('App\Domain\Auth\AdminUser')->shouldReturn(true);
+        $this->supportsClass('App\Domain\AdminUser\AdminUser')->shouldReturn(true);
     }
 
-    function it_loads_user_by_email(EntityRepositoryInterface $adminUserRepository, AdminUserInterface $adminUser)
+    function it_loads_user_by_email(EntityRepositoryInterface $adminUserRepository, AdminUser $adminUser)
     {
         $adminUserRepository->findOneBy(['email' => 'user@example.com'])->shouldBeCalled()->willReturn($adminUser);
 
-        $this->loadUserByUsername('user@example.com')->shouldBeAnInstanceOf(AdminUserInterface::class);
+        $this->loadUserByUsername('user@example.com')->shouldBeAnInstanceOf(AdminUser::class);
     }
 
     function it_throws_exception_when_administrator_not_found(EntityRepositoryInterface $adminUserRepository)
@@ -44,7 +44,7 @@ class AdminUserProviderSpec extends ObjectBehavior
         ;
     }
 
-    function it_refreshes_user(EntityRepositoryInterface $adminUserRepository, AdminUserInterface $adminUser)
+    function it_refreshes_user(EntityRepositoryInterface $adminUserRepository, AdminUser $adminUser)
     {
         $adminUser->getUserIdentifier()->shouldBeCalled()->willReturn('user@example.com');
 

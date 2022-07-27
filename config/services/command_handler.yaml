@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Application\CommandHandler\CreateShelterHandler:
+        arguments:
+            - '@App\Domain\Shelter\Factory\ShelterFactory'
+            - '@App\Infrastructure\Doctrine\Repository\ShelterRepository'
+        tags:
+            - { name: messenger.message_handler }
