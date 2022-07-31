@@ -65,8 +65,7 @@ final class ResponseChecker implements ResponseCheckerInterface
 
     public function hasAccessDenied(Response $response): bool
     {
-        return
-            $response->getMessage() === 'JWT Token not found' &&
+        return $response->getMessage() === 'JWT Token not found' &&
             $response->getStatusCode() === Response::HTTP_UNAUTHORIZED;
     }
 
@@ -85,19 +84,25 @@ final class ResponseChecker implements ResponseCheckerInterface
         return $response->getStatusCode() === Response::HTTP_OK;
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function hasValue(Response $response, string $key, $value): bool
     {
         return $this->getResponseContentValue($response, $key) === $value;
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function hasValueInCollection(Response $response, string $key, $value): bool
     {
         return in_array($value, $this->getResponseContentValue($response, $key), true);
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function hasItemWithValue(Response $response, string $key, $value): bool
     {
         foreach ($this->getCollection($response) as $resource) {
@@ -109,7 +114,9 @@ final class ResponseChecker implements ResponseCheckerInterface
         return false;
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function hasSubResourceWithValue(Response $response, string $subResource, string $key, $value): bool
     {
         foreach ($this->getResponseContentValue($response, $subResource) as $resource) {
@@ -121,7 +128,9 @@ final class ResponseChecker implements ResponseCheckerInterface
         return false;
     }
 
-    /** @param string|array $value */
+    /**
+     * @param string|array $value
+     */
     public function hasItemOnPositionWithValue(Response $response, int $position, string $key, $value): bool
     {
         return $this->getCollection($response)[$position][$key] === $value;
@@ -129,7 +138,7 @@ final class ResponseChecker implements ResponseCheckerInterface
 
     public function hasItemWithTranslation(Response $response, string $locale, string $key, string $translation): bool
     {
-        if (!$this->hasCollection($response)) {
+        if (! $this->hasCollection($response)) {
             $resource = $this->getResponseContent($response);
 
             if (isset($resource['translations'][$locale]) && $resource['translations'][$locale][$key] === $translation) {
@@ -178,7 +187,7 @@ final class ResponseChecker implements ResponseCheckerInterface
 
     public function hasViolationWithMessage(Response $response, string $message, ?string $property = null): bool
     {
-        if (!$this->hasKey($response, 'violations')) {
+        if (! $this->hasKey($response, 'violations')) {
             return false;
         }
 

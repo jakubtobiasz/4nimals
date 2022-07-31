@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat\Helper;
 
-use RuntimeException;
-
 interface SharedStorageInterface
 {
     public function get(string $key);
@@ -18,8 +16,6 @@ interface SharedStorageInterface
 
     public function getLatestResource();
 
-    /**
-     * @throws RuntimeException
-     */
+
     public function setClipboard(array $clipboard);
 }

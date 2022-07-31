@@ -17,9 +17,6 @@ final class AdminPetCollectionQueryHandler
 
     public function __invoke(AdminPetCollectionQuery $query): PetCollectionDto
     {
-        return $this->petRepository->findAllPaginated(
-            $query->page,
-            $query->itemsPerPage
-        );
+        return $this->petRepository->findAllPaginated($query->page, $query->itemsPerPage);
     }
 }

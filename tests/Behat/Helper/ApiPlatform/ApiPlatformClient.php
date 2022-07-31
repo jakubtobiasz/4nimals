@@ -25,7 +25,12 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
 
     public function index(string $resource): Response
     {
-        $this->request = $this->requestFactory->index($this->section, $resource, $this->authorizationHeader, $this->getToken());
+        $this->request = $this->requestFactory->index(
+            $this->section,
+            $resource,
+            $this->authorizationHeader,
+            $this->getToken()
+        );
 
         return $this->request($this->request);
     }
@@ -94,7 +99,9 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
 
     public function sort(array $sorting): Response
     {
-        $this->request->updateParameters(['order' => $sorting]);
+        $this->request->updateParameters([
+            'order' => $sorting,
+        ]);
 
         return $this->request($this->request);
     }
@@ -133,7 +140,12 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
 
     public function buildCreateRequest(string $resource): void
     {
-        $this->request = $this->requestFactory->create($this->section, $resource, $this->authorizationHeader, $this->getToken());
+        $this->request = $this->requestFactory->create(
+            $this->section,
+            $resource,
+            $this->authorizationHeader,
+            $this->getToken()
+        );
     }
 
     public function buildUpdateRequest(string $resource, string $id): void
@@ -161,10 +173,14 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
         );
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function addParameter(string $key, $value): void
     {
-        $this->request->updateParameters([$key => $value]);
+        $this->request->updateParameters([
+            $key => $value,
+        ]);
     }
 
     public function setRequestData(array $content): void
@@ -172,7 +188,9 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
         $this->request->setContent($content);
     }
 
-    /** @param string|int $value */
+    /**
+     * @param string|int $value
+     */
     public function addFilter(string $key, $value): void
     {
         $this->addParameter($key, $value);
@@ -185,13 +203,19 @@ final class ApiPlatformClient implements ApiPlatformClientInterface
 
     public function addFile(string $key, UploadedFile $file): void
     {
-        $this->request->updateFiles([$key => $file]);
+        $this->request->updateFiles([
+            $key => $file,
+        ]);
     }
 
-    /** @param string|int|bool|array $value */
+    /**
+     * @param string|int|bool|array $value
+     */
     public function addRequestData(string $key, $value): void
     {
-        $this->request->updateContent([$key => $value]);
+        $this->request->updateContent([
+            $key => $value,
+        ]);
     }
 
     public function updateRequestData(array $data): void

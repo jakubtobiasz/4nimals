@@ -12,7 +12,7 @@ class SharedStorage implements SharedStorageInterface
 
     public function get(string $key)
     {
-        if (!isset($this->clipboard[$key])) {
+        if (! isset($this->clipboard[$key])) {
             throw new \InvalidArgumentException(sprintf('There is no current resource for "%s"!', $key));
         }
 
@@ -39,7 +39,7 @@ class SharedStorage implements SharedStorageInterface
 
     public function getLatestResource()
     {
-        if (!isset($this->clipboard[$this->latestKey])) {
+        if (! isset($this->clipboard[$this->latestKey])) {
             throw new \InvalidArgumentException(sprintf('There is no "%s" latest resource!', $this->latestKey));
         }
 

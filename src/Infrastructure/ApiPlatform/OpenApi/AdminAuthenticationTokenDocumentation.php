@@ -50,7 +50,7 @@ final class AdminAuthenticationTokenDocumentation implements OpenApiFactoryInter
                                     ],
                                 ],
                                 'description' => 'Authentication failed',
-                            ]
+                            ],
                         ],
                         description: 'Authenticates administrator',
                         requestBody: new RequestBody(

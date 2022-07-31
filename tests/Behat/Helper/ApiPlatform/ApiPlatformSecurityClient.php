@@ -43,7 +43,10 @@ final class ApiPlatformSecurityClient implements ApiSecurityClientInterface
             $this->request['url'],
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json', 'HTTP_ACCEPT' => 'application/json'],
+            [
+                'CONTENT_TYPE' => 'application/json',
+                'HTTP_ACCEPT' => 'application/json',
+            ],
             json_encode($this->request['body'])
         );
 
@@ -59,8 +62,7 @@ final class ApiPlatformSecurityClient implements ApiSecurityClientInterface
     {
         $response = $this->client->getResponse();
 
-        return
-            isset(json_decode($response->getContent(), true)['token']) &&
+        return isset(json_decode($response->getContent(), true)['token']) &&
             $response->getStatusCode() !== Response::HTTP_UNAUTHORIZED
         ;
     }

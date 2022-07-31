@@ -48,15 +48,15 @@ class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
 
     public function addRole(string $role): void
     {
-        if (!in_array($role, $this->roles)) {
+        if (! in_array($role, $this->roles, true)) {
             $this->roles[] = $role;
         }
     }
 
     public function removeRole(string $role): void
     {
-        if (in_array($role, $this->roles)) {
-            unset($this->roles[array_search($role, $this->roles)]);
+        if (in_array($role, $this->roles, true)) {
+            unset($this->roles[array_search($role, $this->roles, true)]);
         }
     }
 

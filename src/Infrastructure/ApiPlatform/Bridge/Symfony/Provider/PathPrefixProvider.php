@@ -18,7 +18,7 @@ final class PathPrefixProvider implements PathPrefixProviderInterface
 
     public function getPathPrefix(string $path): ?string
     {
-        if (!str_contains($path, $this->apiRoute)) {
+        if (! str_contains($path, $this->apiRoute)) {
             return null;
         }
 

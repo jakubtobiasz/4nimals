@@ -21,10 +21,7 @@ final class PetDoctrineRepository extends Repository implements PetRepository
             ->setMaxResults($maxResults)
         ;
 
-        return new PetCollectionDto(
-            $qb->executeQuery()->fetchAllAssociative(),
-            $this->count()
-        );
+        return new PetCollectionDto($qb->executeQuery() ->fetchAllAssociative(), $this->count());
     }
 
     public function count(): int

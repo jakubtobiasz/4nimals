@@ -31,7 +31,7 @@ final class AdminUserProvider implements UserProviderInterface
         /** @var AdminUser|null $adminUser */
         $adminUser = $this->adminUserRepository->findOneByEmail($username);
 
-        if (null === $adminUser) {
+        if ($adminUser === null) {
             throw new UserNotFoundException(sprintf('Administrator with email "%s" not found.', $username));
         }
 

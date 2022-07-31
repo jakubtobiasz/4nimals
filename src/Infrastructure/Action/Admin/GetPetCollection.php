@@ -15,9 +15,7 @@ final class GetPetCollection
 {
     use HandleTrait;
 
-    public function __construct(
-        MessageBusInterface $messageBus,
-    ) {
+    public function __construct(MessageBusInterface $messageBus,) {
         $this->messageBus = $messageBus;
     }
 

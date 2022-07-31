@@ -29,6 +29,7 @@ abstract class Repository implements RepositoryInterface
 
     public function createDbalQueryBuilder(): QueryBuilder
     {
-        return $this->entityManager->getConnection()->createQueryBuilder();
+        return $this->entityManager->getConnection()
+            ->createQueryBuilder();
     }
 }

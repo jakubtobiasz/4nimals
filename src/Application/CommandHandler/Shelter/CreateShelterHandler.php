@@ -22,11 +22,7 @@ final class CreateShelterHandler
     {
         $uuid = Uuid::create();
 
-        $shelter = $this->shelterFactory->createNew(
-            $uuid,
-            $command->name,
-            $command->address
-        );
+        $shelter = $this->shelterFactory->createNew($uuid, $command->name, $command->address);
 
         $this->shelterRepository->persist($shelter);
 

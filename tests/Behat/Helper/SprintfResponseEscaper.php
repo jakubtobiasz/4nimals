@@ -13,11 +13,7 @@ final class SprintfResponseEscaper
         return sprintf(
             '%s Received response: %s',
             $message,
-            str_replace(
-                '%',
-                '%%',
-                json_encode(json_decode($response->getContent(), true), \JSON_PRETTY_PRINT)
-            )
+            str_replace('%', '%%', json_encode(json_decode($response->getContent(), true), \JSON_PRETTY_PRINT))
         );
     }
 }

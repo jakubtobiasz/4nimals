@@ -8,6 +8,15 @@ class Uuid
 {
     private const TYPE = 4;
 
+    private function __construct(private readonly string $uuid)
+    {
+    }
+
+    public function __toString(): string
+    {
+        return $this->uuid;
+    }
+
     public static function create(): self
     {
         $uuid = random_bytes(16);
@@ -29,28 +38,19 @@ class Uuid
 
     public static function fromString(string $uuid): self
     {
-        if (!self::isValid($uuid)) {
+        if (! self::isValid($uuid)) {
             throw new \InvalidArgumentException('Invalid UUID');
         }
 
         return new self($uuid);
     }
 
-    private function __construct(private readonly string $uuid)
-    {
-    }
-
-    public function __toString(): string
-    {
-        return $this->uuid;
-    }
-
     public static function isValid(string $uuid): bool
     {
-        if (!preg_match('{^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$}Di', $uuid)) {
+        if (! preg_match('{^[0-9a-f]{8}(?:-[0-9a-f]{4}){3}-[0-9a-f]{12}$}Di', $uuid)) {
             return false;
         }
 
-        return __CLASS__ === static::class || static::TYPE === (int) $uuid[14];
+        return static::class === __CLASS__ || static::TYPE === (int) $uuid[14];
     }
 }

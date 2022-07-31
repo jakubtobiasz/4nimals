@@ -50,7 +50,7 @@ final class FrontAuthenticationTokenDocumentation implements OpenApiFactoryInter
                                     ],
                                 ],
                                 'description' => 'Authentication failed',
-                            ]
+                            ],
                         ],
                         description: 'Authenticates front user',
                         requestBody: new RequestBody(

@@ -12,6 +12,8 @@ final class AdminUserDoctrineRepository extends Repository implements AdminUserR
 {
     public function findOneByEmail(string $email): ?AdminUser
     {
-        return $this->getRepository(AdminUser::class)->findOneBy(['email' => $email]);
+        return $this->getRepository(AdminUser::class)->findOneBy([
+            'email' => $email,
+        ]);
     }
 }

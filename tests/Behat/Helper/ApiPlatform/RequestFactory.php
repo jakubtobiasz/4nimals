@@ -46,7 +46,12 @@ final class RequestFactory implements RequestFactoryInterface
         return $builder->build();
     }
 
-    public function subResourceIndex(string $section, string $resource, string $id, string $subResource): RequestInterface
+    public function subResourceIndex(
+        string $section,
+        string $resource,
+        string $id,
+        string $subResource
+    ): RequestInterface
     {
         $builder = RequestBuilder::create(
             sprintf('%s/%s/%s/%s/%s', $this->apiUrlPrefix, $section, $resource, $id, $subResource),
@@ -143,7 +148,13 @@ final class RequestFactory implements RequestFactoryInterface
         return $this->customItemAction($section, $resource, $id, HttpRequest::METHOD_PATCH, $transition);
     }
 
-    public function customItemAction(string $section, string $resource, string $id, string $type, string $action): RequestInterface
+    public function customItemAction(
+        string $section,
+        string $resource,
+        string $id,
+        string $type,
+        string $action
+    ): RequestInterface
     {
         $builder = RequestBuilder::create(
             sprintf('%s/%s/%s/%s/%s', $this->apiUrlPrefix, $section, $resource, $id, $action),
@@ -179,7 +190,12 @@ final class RequestFactory implements RequestFactoryInterface
         return $builder->build();
     }
 
-    public function custom(string $url, string $method, array $additionalHeaders = [], ?string $token = null): RequestInterface
+    public function custom(
+        string $url,
+        string $method,
+        array $additionalHeaders = [],
+        ?string $token = null
+    ): RequestInterface
     {
         $builder = RequestBuilder::create($url, $method);
         $builder->withHeader('HTTP_ACCEPT', self::LINKED_DATA_JSON_CONTENT_TYPE);

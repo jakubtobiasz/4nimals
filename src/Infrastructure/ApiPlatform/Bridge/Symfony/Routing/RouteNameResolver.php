@@ -9,10 +9,10 @@ use ApiPlatform\Core\Bridge\Symfony\Routing\RouteNameResolverInterface;
 use ApiPlatform\Core\Exception\InvalidArgumentException;
 use App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider\PathPrefixProviderInterface;
 use Symfony\Component\Routing\RouterInterface;
-use Webmozart\Assert\Assert;
 
 /**
- * This class is based on src/Bridge/Symfony/Routing/RouteNameResolver.php, but has added logic for matching /shop, /admin prefixes
+ * This class is based on src/Bridge/Symfony/Routing/RouteNameResolver.php, but has added logic for matching /shop,
+ * /admin prefixes
  */
 final class RouteNameResolver implements RouteNameResolverInterface
 {
@@ -36,12 +36,12 @@ final class RouteNameResolver implements RouteNameResolverInterface
 
             if (
                 $resourceClass === $currentResourceClass &&
-                null !== $operation &&
+                $operation !== null &&
                 (empty($methods) || \in_array('GET', $methods, true))
             ) {
                 if (
-                    OperationType::SUBRESOURCE === $operationType &&
-                    false === $this->isSameSubresource($context, $route->getDefault('_api_subresource_context'))) {
+                    $operationType === OperationType::SUBRESOURCE &&
+                    $this->isSameSubresource($context, $route->getDefault('_api_subresource_context')) === false) {
                     continue;
                 }
 

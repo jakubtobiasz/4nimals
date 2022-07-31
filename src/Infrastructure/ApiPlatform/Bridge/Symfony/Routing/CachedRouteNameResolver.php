@@ -11,7 +11,8 @@ use Psr\Cache\CacheItemPoolInterface;
 use Webmozart\Assert\Assert;
 
 /**
- * This class is based on src/Bridge/Symfony/Routing/CachedRouteNameResolver.php, but has added logic for matching /shop, /admin prefixes
+ * This class is based on src/Bridge/Symfony/Routing/CachedRouteNameResolver.php, but has added logic for matching
+ * /shop, /admin prefixes
  */
 final class CachedRouteNameResolver implements RouteNameResolverInterface
 {
