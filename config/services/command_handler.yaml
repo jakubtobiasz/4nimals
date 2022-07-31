@@ -3,9 +3,16 @@ services:
         autowire: false
         autoconfigure: false
 
-    App\Application\CommandHandler\CreateShelterHandler:
+    App\Application\CommandHandler\Pet\CreatePetHandler:
         arguments:
-            - '@App\Domain\Shelter\Factory\ShelterFactory'
-            - '@App\Infrastructure\Doctrine\Repository\ShelterRepository'
+            - '@App\Domain\Pet\PetFactory'
+            - '@App\Infrastructure\Repository\PetDoctrineRepository'
+        tags:
+            - { name: messenger.message_handler }
+
+    App\Application\CommandHandler\Shelter\CreateShelterHandler:
+        arguments:
+            - '@App\Domain\Shelter\ShelterFactory'
+            - '@App\Infrastructure\Repository\ShelterDoctrineRepository'
         tags:
             - { name: messenger.message_handler }

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Doctrine\Repository;
+namespace App\Infrastructure\Repository;
 
 use App\Domain\Shelter\Shelter;
-use App\Domain\Shelter\ShelterRepositoryInterface;
+use App\Domain\Shelter\ShelterRepository;
 use App\SharedKernel\Domain\Identifier\Uuid;
 use App\SharedKernel\Infrastructure\Doctrine\Repository\Repository;
 
-final class ShelterRepository extends Repository implements ShelterRepositoryInterface
+final class ShelterDoctrineRepository extends Repository implements ShelterRepository
 {
     public function find(Uuid $id): Shelter
     {

@@ -1,0 +1,16 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Infrastructure\Repository\AdminUserDoctrineRepository:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    App\Infrastructure\Repository\PetDoctrineRepository:
+        arguments:
+            - '@doctrine.orm.entity_manager'
+
+    App\Infrastructure\Repository\ShelterDoctrineRepository:
+        arguments:
+            - '@doctrine.orm.entity_manager'

@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Shelter\Factory;
+namespace App\Domain\Shelter;
 
-use App\Domain\Shelter\Shelter;
 use App\SharedKernel\Domain\Address;
 use App\SharedKernel\Domain\Identifier\Uuid;
 

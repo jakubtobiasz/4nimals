@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Application\CommandResult;
+namespace App\Application\CommandResult\Shelter;
 
 final class CreateShelterResult
 {

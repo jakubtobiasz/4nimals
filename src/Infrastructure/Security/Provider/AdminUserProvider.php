@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace App\Infrastructure\Security\Provider;
 
 use App\Domain\AdminUser\AdminUser;
-use App\Infrastructure\Doctrine\Repository\AdminUserRepository;
+use App\Infrastructure\Repository\AdminUserDoctrineRepository;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 
 final class AdminUserProvider implements UserProviderInterface
 {
-    public function __construct(private readonly AdminUserRepository $adminUserRepository)
+    public function __construct(private readonly AdminUserDoctrineRepository $adminUserRepository)
     {
     }
 

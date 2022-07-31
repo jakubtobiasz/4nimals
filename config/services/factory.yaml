@@ -3,4 +3,6 @@ services:
         autowire: false
         autoconfigure: false
 
-    App\Domain\Shelter\Factory\ShelterFactory: ~
+    App\Domain\Pet\PetFactory: ~
+
+    App\Domain\Shelter\ShelterFactory: ~

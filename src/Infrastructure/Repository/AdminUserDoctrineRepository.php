@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Doctrine\Repository;
+namespace App\Infrastructure\Repository;
 
 use App\Domain\AdminUser\AdminUser;
-use App\Domain\AdminUser\AdminUserRepositoryInterface;
+use App\Domain\AdminUser\AdminUserRepository;
 use App\SharedKernel\Infrastructure\Doctrine\Repository\Repository;
 
-final class AdminUserRepository extends Repository implements AdminUserRepositoryInterface
+final class AdminUserDoctrineRepository extends Repository implements AdminUserRepository
 {
     public function findOneByEmail(string $email): ?AdminUser
     {
