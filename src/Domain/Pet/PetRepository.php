@@ -8,4 +8,7 @@ use App\SharedKernel\Domain\RepositoryInterface;
 
 interface PetRepository extends RepositoryInterface
 {
+    public function findAllPaginated(int $page, int $maxResults): PetCollectionDto;
+
+    public function count(): int;
 }

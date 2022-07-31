@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Infrastructure\Action\Admin\GetPetCollection:
+        arguments:
+            - '@messenger.default_bus'
+        tags:
+            - { name: controller.service_arguments }

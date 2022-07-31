@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Application\QueryHandler\Pet\AdminPetCollectionQueryHandler:
+        arguments:
+            - '@App\Infrastructure\Repository\PetDoctrineRepository'
+        tags:
+            - { name: messenger.message_handler }
