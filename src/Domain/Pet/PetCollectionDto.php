@@ -20,10 +20,10 @@ final class PetCollectionDto extends Collection implements TotalItemsAwareCollec
 
     public function getClass(): string
     {
-        return Pet::class;
+        return PetDto::class;
     }
 
-    public function getTotalItems(): int
+    public function totalItems(): int
     {
         return $this->totalItems;
     }

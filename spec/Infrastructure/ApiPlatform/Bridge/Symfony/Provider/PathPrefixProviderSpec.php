@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace spec\App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider;
 
 use App\Domain\AdminUser\AdminUser;
-use App\Domain\User\UserInterface;
+use App\Domain\FrontUser\UserInterface;
 use App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider\PathPrefixProviderInterface;
 use App\Infrastructure\Context\UserContextInterface;
 use PhpSpec\ObjectBehavior;

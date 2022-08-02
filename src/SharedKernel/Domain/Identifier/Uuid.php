@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\SharedKernel\Domain\Identifier;
 
-class PetId
+class Uuid
 {
     private const TYPE = 4;
 

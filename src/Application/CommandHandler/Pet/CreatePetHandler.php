@@ -8,7 +8,7 @@ use App\Application\Command\Pet\CreatePet;
 use App\Application\CommandResult\Pet\CreatePetResult;
 use App\Domain\Pet\PetFactory;
 use App\Domain\Pet\PetRepository;
-use App\SharedKernel\Domain\Identifier\PetId;
+use App\SharedKernel\Domain\Identifier\Uuid;
 
 final class CreatePetHandler
 {
@@ -20,8 +20,8 @@ final class CreatePetHandler
 
     public function __invoke(CreatePet $command): CreatePetResult
     {
-        $uuid = PetId::create();
-        $shelterId = PetId::fromString($command->shelterId);
+        $uuid = Uuid::create();
+        $shelterId = Uuid::fromString($command->shelterId);
 
         $pet = $this->petFactory->createNew($uuid, $shelterId, $command->name);
 

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace App\Infrastructure\ApiPlatform\Bridge\Symfony\Provider;
 
 use App\Domain\AdminUser\AdminUser;
+use App\Domain\FrontUser\FrontUser;
 use App\Infrastructure\Context\UserContextInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 final class PathPrefixProvider implements PathPrefixProviderInterface
 {
@@ -37,10 +37,9 @@ final class PathPrefixProvider implements PathPrefixProviderInterface
 
     public function getCurrentPrefix(): ?string
     {
-        /** @var UserInterface|null $user */
         $user = $this->userContext->getUser();
 
-        if ($user === null || $user instanceof \App\Domain\User\UserInterface) {
+        if ($user === null || $user instanceof FrontUser) {
             return PathPrefixes::FRONT->value;
         }
 

@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\AdminUser;
+namespace App\Domain\FrontUser;
 
 use App\SharedKernel\Domain\Identifier\Uuid;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
+class FrontUser implements PasswordAuthenticatedUserInterface, UserInterface
 {
     private Uuid $id;
 
@@ -40,7 +40,6 @@ class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        $roles[] = 'ROLE_ADMIN';
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);

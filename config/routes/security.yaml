@@ -1,3 +1,7 @@
 admin_user_authenticate:
     path: /api/admin/authenticate
     methods: [POST]
+
+front_user_authenticate:
+    path: /api/front/authenticate
+    methods: [POST]

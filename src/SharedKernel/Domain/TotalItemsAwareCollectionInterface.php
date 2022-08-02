@@ -6,5 +6,5 @@ namespace App\SharedKernel\Domain;
 
 interface TotalItemsAwareCollectionInterface
 {
-    public function getTotalItems(): int;
+    public function totalItems(): int;
 }

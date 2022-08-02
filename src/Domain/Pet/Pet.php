@@ -5,24 +5,24 @@ declare(strict_types=1);
 namespace App\Domain\Pet;
 
 use App\Domain\Shelter\ShelterId;
-use App\SharedKernel\Domain\Identifier\PetId;
+use App\SharedKernel\Domain\Identifier\Uuid;
 
 class Pet
 {
     public function __construct(
-        private PetId $id,
+        private Uuid $id,
         private ShelterId $shelterId,
         private string $name,
         private bool $adopted = false,
     ) {
     }
 
-    public function getId(): PetId
+    public function getId(): Uuid
     {
         return $this->id;
     }
 
-    public function getShelterId(): PetId
+    public function getShelterId(): Uuid
     {
         return $this->shelterId;
     }

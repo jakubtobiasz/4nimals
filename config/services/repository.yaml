@@ -14,3 +14,7 @@ services:
     App\Infrastructure\Repository\ShelterDoctrineRepository:
         arguments:
             - '@doctrine.orm.entity_manager'
+
+    App\Infrastructure\Repository\FrontUserDoctrineRepository:
+        arguments:
+            - '@doctrine.orm.entity_manager'
