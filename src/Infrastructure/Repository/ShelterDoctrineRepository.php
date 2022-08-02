@@ -6,12 +6,12 @@ namespace App\Infrastructure\Repository;
 
 use App\Domain\Shelter\Shelter;
 use App\Domain\Shelter\ShelterRepository;
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Identifier\PetId;
 use App\SharedKernel\Infrastructure\Doctrine\Repository\Repository;
 
 final class ShelterDoctrineRepository extends Repository implements ShelterRepository
 {
-    public function find(Uuid $id): Shelter
+    public function find(PetId $id): Shelter
     {
         return $this->entityManager->find(Shelter::class, $id);
     }

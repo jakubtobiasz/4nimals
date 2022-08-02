@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Domain\Pet;
 
-final class PetCollectionDto implements \Iterator
+use App\SharedKernel\Domain\Collection;
+use App\SharedKernel\Domain\TotalItemsAwareCollectionInterface;
+
+final class PetCollectionDto extends Collection implements TotalItemsAwareCollectionInterface
 {
     private int $position = 0;
 
@@ -12,34 +15,15 @@ final class PetCollectionDto implements \Iterator
         private readonly array $elements,
         private readonly int $totalItems
     ) {
+        parent::__construct($this->elements);
     }
 
-    public function current(): PetDto
+    public function getClass(): string
     {
-        return new PetDto($this->elements[$this->position]);
+        return Pet::class;
     }
 
-    public function next(): void
-    {
-        ++$this->position;
-    }
-
-    public function key(): int
-    {
-        return $this->position;
-    }
-
-    public function valid(): bool
-    {
-        return isset($this->elements[$this->position]);
-    }
-
-    public function rewind(): void
-    {
-        $this->position = 0;
-    }
-
-    public function totalItems(): int
+    public function getTotalItems(): int
     {
         return $this->totalItems;
     }

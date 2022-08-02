@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Domain\Pet;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\Domain\Shelter\ShelterId;
 
 final class PetFactory
 {
-    public function createNew(Uuid $id, Uuid $shelterId, string $name): Pet
+    public function createNew( $id, ShelterId $shelterId, string $name): Pet
     {
         return new Pet($id, $shelterId, $name);
     }

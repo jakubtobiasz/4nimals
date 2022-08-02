@@ -8,7 +8,7 @@ use App\Application\Command\Shelter\CreateShelter;
 use App\Application\CommandResult\Shelter\CreateShelterResult;
 use App\Domain\Shelter\ShelterFactory;
 use App\Domain\Shelter\ShelterRepository;
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Identifier\PetId;
 
 final class CreateShelterHandler
 {
@@ -20,7 +20,7 @@ final class CreateShelterHandler
 
     public function __invoke(CreateShelter $command): CreateShelterResult
     {
-        $uuid = Uuid::create();
+        $uuid = PetId::create();
 
         $shelter = $this->shelterFactory->createNew($uuid, $command->name, $command->address);
 

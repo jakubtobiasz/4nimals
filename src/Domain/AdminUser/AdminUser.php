@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Domain\AdminUser;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Identifier\PetId;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
 {
-    private Uuid $id;
+    private PetId $id;
 
     private array $roles = [];
 
@@ -22,7 +22,7 @@ class AdminUser implements PasswordAuthenticatedUserInterface, UserInterface
     {
     }
 
-    public function getId(): Uuid
+    public function getId(): PetId
     {
         return $this->id;
     }

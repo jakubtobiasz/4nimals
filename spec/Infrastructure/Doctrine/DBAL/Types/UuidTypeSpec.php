@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace spec\App\Infrastructure\Doctrine\DBAL\Types;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Identifier\PetId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 use PhpSpec\ObjectBehavior;
@@ -32,7 +32,7 @@ class UuidTypeSpec extends ObjectBehavior
 
     function it_converts_to_database_value(AbstractPlatform $platform)
     {
-        $uuid = Uuid::fromString('152b1f12-c91e-41a9-9518-f676dc610de2');
+        $uuid = PetId::fromString('152b1f12-c91e-41a9-9518-f676dc610de2');
 
         $this->convertToDatabaseValue($uuid, $platform)->shouldReturn('152b1f12-c91e-41a9-9518-f676dc610de2');
     }
@@ -43,7 +43,7 @@ class UuidTypeSpec extends ObjectBehavior
 
         $result = $this->convertToPHPValue($uuid, $platform);
 
-        $result->shouldBeAnInstanceOf(Uuid::class);
+        $result->shouldBeAnInstanceOf(PetId::class);
         $result->__toString()->shouldReturn('152b1f12-c91e-41a9-9518-f676dc610de2');
     }
 }

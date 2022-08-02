@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Infrastructure\Doctrine\DBAL\Types;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Identifier\PetId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 
@@ -22,9 +22,9 @@ class UuidType extends Type
         return strval($value);
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): Uuid
+    public function convertToPHPValue($value, AbstractPlatform $platform): PetId
     {
-        return Uuid::fromString($value);
+        return PetId::fromString($value);
     }
 
     public function getName(): string
