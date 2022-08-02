@@ -6,9 +6,9 @@ namespace App\SharedKernel\Domain\Identifier;
 
 abstract class Uuid
 {
-    private const TYPE = 4;
+    protected const TYPE = 4;
 
-    private function __construct(private readonly string $uuid)
+    protected function __construct(private readonly string $uuid)
     {
     }
 

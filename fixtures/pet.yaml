@@ -1,0 +1,13 @@
+App\Domain\Pet\Pet:
+    adopted_pet_{1..50}:
+        __construct:
+            - '<pet_id()>'
+            - '@shelter_id_<numberBetween(1, 30)>'
+            - '<firstname()>'
+            - true
+    not_adopted_pet_{51..150}:
+        __construct:
+            - '<pet_id()>'
+            - '@shelter_id_<numberBetween(1, 30)>'
+            - '<firstname()>'
+            - false

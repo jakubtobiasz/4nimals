@@ -45,6 +45,7 @@
         "friends-of-behat/page-object-extension": "^0.3.2",
         "friends-of-behat/symfony-extension": "^2.3",
         "friends-of-behat/variadic-extension": "^1.5",
+        "hautelook/alice-bundle": "^2.11",
         "phpat/phpat": "^0.9.1",
         "phpspec/phpspec": "^7.2",
         "symfony/debug-bundle": "5.4.*",

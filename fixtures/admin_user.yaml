@@ -1,0 +1,11 @@
+App\Domain\AdminUser\AdminUser:
+    admin:
+        __construct:
+            - '<admin_user_id()>'
+            - 'admin@4nimals.app'
+        plainPassword: '4nimals'
+    jakub:
+        __construct:
+            - '<admin_user_id()>'
+            - 'jakub@4nimals.app'
+        plainPassword: '4nimals'

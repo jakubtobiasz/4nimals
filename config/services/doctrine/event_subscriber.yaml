@@ -10,5 +10,7 @@ services:
             - { name: 'doctrine.event_subscriber', priority: -2048 }
 
     App\Infrastructure\Doctrine\EventSubscriber\UserActivitySubscriber:
+        arguments:
+            - '@security.password_hasher'
         tags:
             - { name: 'doctrine.event_subscriber' }

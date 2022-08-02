@@ -1,0 +1,25 @@
+App\SharedKernel\Domain\Address:
+    address_{1..30}:
+        __construct:
+            - '<streetaddress()>'
+            - '<numberBetween(1, 100)>'
+            - '<city()>'
+            - '<postcode()>'
+
+App\Domain\Shelter\ShelterId:
+    shelter_id_{1..30}:
+        __factory: { 'App\Domain\Shelter\ShelterId::create': [] }
+
+App\Domain\Shelter\Shelter:
+    unverified_shelter_{1..15}:
+        __construct:
+            - '@shelter_id_<current()>'
+            - '@address_<current()>'
+            - '<company()>'
+            - false
+    verified_shelter_{16..30}:
+        __construct:
+            - '@shelter_id_<current()>'
+            - '@address_<current()>'
+            - '<company()>'
+            - true

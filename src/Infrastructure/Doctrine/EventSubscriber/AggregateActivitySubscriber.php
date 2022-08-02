@@ -20,11 +20,23 @@ final class AggregateActivitySubscriber implements EventSubscriberInterface
     public function getSubscribedEvents(): array
     {
         return [
-            Events::postFlush,
+            Events::postUpdate,
+            Events::postPersist,
         ];
     }
 
-    public function postFlush(LifecycleEventArgs $args): void
+    public function postUpdate(LifecycleEventArgs $args): void
+    {
+        $object = $args->getObject();
+
+        if (!$object instanceof Aggregate) {
+            return;
+        }
+
+        $this->publishEvents($object);
+    }
+
+    public function postPersist(LifecycleEventArgs $args): void
     {
         $object = $args->getObject();
 

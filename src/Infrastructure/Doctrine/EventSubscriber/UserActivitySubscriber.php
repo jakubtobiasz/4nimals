@@ -9,9 +9,15 @@ use App\Domain\FrontUser\FrontUser;
 use Doctrine\Bundle\DoctrineBundle\EventSubscriber\EventSubscriberInterface;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 final class UserActivitySubscriber implements EventSubscriberInterface
 {
+    public function __construct(
+        private readonly UserPasswordHasherInterface $passwordHasher,
+    ) {
+    }
+
     public function getSubscribedEvents(): array
     {
         return [
@@ -48,7 +54,9 @@ final class UserActivitySubscriber implements EventSubscriberInterface
             return;
         }
 
-        $user->changePassword($user->plainPassword());
+        $user->changePassword(
+            $this->passwordHasher->hashPassword($user, $user->plainPassword())
+        );
         $user->eraseCredentials();
     }
 }
