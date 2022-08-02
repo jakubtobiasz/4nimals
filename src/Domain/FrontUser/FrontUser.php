@@ -4,93 +4,58 @@ declare(strict_types=1);
 
 namespace App\Domain\FrontUser;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\Domain\FrontUser\Event\FrontUserPasswordChanged;
+use App\SharedKernel\Domain\Aggregate;
+use App\SharedKernel\Domain\UserMethods;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class FrontUser implements PasswordAuthenticatedUserInterface, UserInterface
+class FrontUser extends Aggregate implements PasswordAuthenticatedUserInterface, UserInterface
 {
-    private Uuid $id;
+    use UserMethods;
 
-    private array $roles = [];
-
-    private ?string $password = null;
-
-    private ?string $plainPassword = null;
-
-    public function __construct(private string $email)
-    {
+    public function __construct(
+        private readonly FrontUserId $id,
+        private string|null $email = null,
+        private string|null $password = null,
+        private array $roles = [],
+    ) {
     }
 
-    public function getId(): Uuid
+    public function id(): FrontUserId
     {
         return $this->id;
     }
 
-    public function getEmail(): string
+    public function email(): string|null
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): void
+    /**
+     * @return array<string>
+     */
+    public function roles(): array
     {
-        $this->email = $email;
+        $this->roles[] = 'ROLE_USER';
+
+        return array_unique($this->roles);
     }
 
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-        $roles[] = 'ROLE_USER';
-
-        return array_unique($roles);
-    }
-
-    public function addRole(string $role): void
-    {
-        if (! in_array($role, $this->roles, true)) {
-            $this->roles[] = $role;
-        }
-    }
-
-    public function removeRole(string $role): void
-    {
-        if (in_array($role, $this->roles, true)) {
-            unset($this->roles[array_search($role, $this->roles, true)]);
-        }
-    }
-
-    public function getPassword(): ?string
+    public function password(): string|null
     {
         return $this->password;
     }
 
-    public function setPassword(?string $password): void
-    {
-        $this->password = $password;
-    }
-
-    public function getPlainPassword(): ?string
+    public function plainPassword(): null|string
     {
         return $this->plainPassword;
     }
 
-    public function setPlainPassword(?string $plainPassword): void
+    public function changePassword(string $newPassword): void
     {
-        $this->plainPassword = $plainPassword;
-    }
+        $this->password = $newPassword;
 
-    public function getSalt(): ?string
-    {
-        return null;
-    }
-
-    public function eraseCredentials(): void
-    {
-        $this->plainPassword = null;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->email;
+        $this->raise(new FrontUserPasswordChanged());
     }
 }

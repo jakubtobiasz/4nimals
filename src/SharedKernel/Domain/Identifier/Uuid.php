@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\SharedKernel\Domain\Identifier;
 
-class Uuid
+abstract class Uuid
 {
     private const TYPE = 4;
 
@@ -17,7 +17,12 @@ class Uuid
         return $this->uuid;
     }
 
-    public static function create(): self
+    public function toString(): string
+    {
+        return strval($this);
+    }
+
+    public static function create():static
     {
         $uuid = random_bytes(16);
         $uuid[6] = $uuid[6] & "\x0F" | "\x40";
@@ -33,16 +38,16 @@ class Uuid
             substr($uuid, 20, 12)
         );
 
-        return new self($generatedUuid);
+        return new static($generatedUuid);
     }
 
-    public static function fromString(string $uuid): self
+    public static function fromString(string $uuid): static
     {
-        if (! self::isValid($uuid)) {
+        if (! static::isValid($uuid)) {
             throw new \InvalidArgumentException('Invalid UUID');
         }
 
-        return new self($uuid);
+        return new static($uuid);
     }
 
     public static function isValid(string $uuid): bool

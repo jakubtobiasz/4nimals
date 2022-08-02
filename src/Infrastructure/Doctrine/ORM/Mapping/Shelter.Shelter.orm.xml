@@ -4,7 +4,7 @@
                 xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                 https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
     <entity name="App\Domain\Shelter\Shelter" table="shelters">
-        <id name="id" type="uuid" />
+        <id name="id" type="shelter_id" />
 
         <field name="name" />
         <field name="verified" type="boolean" />

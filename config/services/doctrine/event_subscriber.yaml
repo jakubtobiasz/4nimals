@@ -1,0 +1,14 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+
+    App\Infrastructure\Doctrine\EventSubscriber\AggregateActivitySubscriber:
+        arguments:
+            - '@event_dispatcher'
+        tags:
+            - { name: 'doctrine.event_subscriber', priority: -2048 }
+
+    App\Infrastructure\Doctrine\EventSubscriber\UserActivitySubscriber:
+        tags:
+            - { name: 'doctrine.event_subscriber' }

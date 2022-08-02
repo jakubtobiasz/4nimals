@@ -17,11 +17,15 @@ final class PetDoctrineRepository extends Repository implements PetRepository
 
         $firstPage = ($page - 1) * $maxResults;
         $qb
+            ->leftJoin('s', 'pets', 'p', 's.id = p.shelter_id')
+            ->groupBy('s.id')
             ->setFirstResult($firstPage)
             ->setMaxResults($maxResults)
         ;
 
-        return new PetCollectionDto($qb->executeQuery() ->fetchAllAssociative(), $this->count());
+        dd($qb->executeQuery()->fetchAllAssociative());
+
+//        return new PetCollectionDto($qb->executeQuery() ->fetchAllAssociative(), $this->count());
     }
 
     public function count(): int
@@ -36,7 +40,7 @@ final class PetDoctrineRepository extends Repository implements PetRepository
     {
         return $this->createDbalQueryBuilder()
             ->select('*')
-            ->from('pets')
+            ->from('shelters', 's')
         ;
     }
 }

@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Doctrine\DBAL\Types;
+namespace App\Infrastructure\Doctrine\DBAL\Types\Id;
 
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\Domain\FrontUser\FrontUserId;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;
 
-class UuidType extends Type
+final class FrontUserIdType extends Type
 {
-    public const NAME = 'uuid';
-
     public function getSQLDeclaration(array $column, AbstractPlatform $platform): string
     {
         return $platform->getGuidTypeDeclarationSQL($column);
@@ -22,13 +20,13 @@ class UuidType extends Type
         return strval($value);
     }
 
-    public function convertToPHPValue($value, AbstractPlatform $platform): Uuid
+    public function convertToPHPValue($value, AbstractPlatform $platform): FrontUserId
     {
-        return Uuid::fromString($value);
+        return FrontUserId::fromString($value);
     }
 
     public function getName(): string
     {
-        return self::NAME;
+        return 'front_user_id';
     }
 }

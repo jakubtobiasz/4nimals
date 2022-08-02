@@ -9,8 +9,6 @@
             <collectionOperation name="admin_get">
                 <attribute name="method">GET</attribute>
                 <attribute name="path">/admin/front-users</attribute>
-                <attribute name="controller">App\Infrastructure\Action\Admin\GetPetCollection</attribute>
-                <attribute name="output">App\Domain\Pet\PetDto</attribute>
                 <attribute name="denormalization_context">
                     <attribute name="groups">admin:front_user:read</attribute>
                 </attribute>
@@ -20,8 +18,6 @@
                 <attribute name="method">POST</attribute>
                 <attribute name="path">/admin/front-users</attribute>
                 <attribute name="messenger">input</attribute>
-                <attribute name="input">App\Application\Command\Pet\CreatePet</attribute>
-                <attribute name="output">App\Application\CommandResult\Pet\CreatePetResult</attribute>
                 <attribute name="denormalization_context">
                     <attribute name="groups">
                         <attribute>admin:front_user:create</attribute>
@@ -33,8 +29,6 @@
                 <attribute name="method">POST</attribute>
                 <attribute name="path">/front/front-users</attribute>
                 <attribute name="messenger">input</attribute>
-                <attribute name="input">App\Application\Command\Pet\CreatePet</attribute>
-                <attribute name="output">App\Application\CommandResult\Pet\CreatePetResult</attribute>
                 <attribute name="denormalization_context">
                     <attribute name="groups">
                         <attribute>front:front_user:create</attribute>

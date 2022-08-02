@@ -5,45 +5,35 @@ declare(strict_types=1);
 namespace App\Domain\Pet;
 
 use App\Domain\Shelter\ShelterId;
-use App\SharedKernel\Domain\Identifier\Uuid;
+use App\SharedKernel\Domain\Aggregate;
 
-class Pet
+class Pet extends Aggregate
 {
     public function __construct(
-        private Uuid $id,
+        private readonly PetId $id,
         private ShelterId $shelterId,
-        private string $name,
+        private string|null $name = null,
         private bool $adopted = false,
     ) {
     }
 
-    public function getId(): Uuid
+    public function id(): PetId
     {
         return $this->id;
     }
 
-    public function getShelterId(): Uuid
+    public function shelterId(): ShelterId
     {
         return $this->shelterId;
     }
 
-    public function getName(): string
+    public function name(): string|null
     {
         return $this->name;
     }
 
-    public function setName(string $name): void
-    {
-        $this->name = $name;
-    }
-
-    public function isAdopted(): bool
+    public function adopted(): bool
     {
         return $this->adopted;
-    }
-
-    public function setAdopted(bool $adopted): void
-    {
-        $this->adopted = $adopted;
     }
 }
